@@ -1,0 +1,6 @@
+Meteor cheetsheet
+https://gentlenode.com/journal/meteor-5-complete-cheatsheet/7
+
+Login flow customization
+guide: https://github.com/meteor-useraccounts/core/blob/master/Guide.md
+ui: https://github.com/meteor-useraccounts/boilerplates

@@ -1,0 +1,37 @@
+.selected {
+    background-color: yellow;
+}
+
+    .animateColor {
+        -webkit-animation: color-change 2s ;
+        -moz-animation: color-change 2s ;
+        -o-animation: color-change 2s ;
+        -ms-animation: color-change 2s ;
+        animation: color-change 2s ;
+    }
+
+    @-webkit-keyframes color-change {
+        0% { color: black; }
+        50% { color: red; font-weight: bold;}
+        100% { color: black; }
+    }
+    @-moz-keyframes color-change {
+        0% { color: black; }
+        50% { color: red; font-weight: bold;}
+        100% { color: red; }
+    }
+    @-ms-keyframes color-change {
+        0% { color: black; }
+        50% { color: red; font-weight: bold;}
+        100% { color: black; }
+    }
+    @-o-keyframes color-change {
+        0% { color: black; }
+        50% { color: red; font-weight: bold;}
+        100% { color: black; }
+    }
+    @keyframes color-change {
+        0% { color: black; }
+        50% { color: red; font-weight: bold;}
+        100% { color: black; }
+    }

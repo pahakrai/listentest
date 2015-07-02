@@ -1,0 +1,17 @@
+﻿<template name="stockTest">
+  <h3>China A Stocks</h3>
+
+	  <table class="table table-striped">
+	  <thead>
+	  <tr><th>name</th><td align='right'><b>price</b></td><td align='right'><b>volume</b></td><td align='right'><b>date</b></td></tr>
+	  </thead>
+    {{#each list}}
+	  <tbody>
+	  <tr>
+	  <td><a href="{{pathFor 'stockInfo' _id=this.stockCode}}">{{name}}</a></td><td align='right'><div class="{{selectedClass}}">{{current}}</div>
+	  </td><td align='right'>{{volume}}</td><td align='right'>{{formatTime lastUpdate}}</td>
+      </tr>
+	  </tbody>
+    {{/each}}
+	  </table>
+</template>

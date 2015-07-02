@@ -1,0 +1,2 @@
+Logger = Meteor.npmRequire('winston');
+
