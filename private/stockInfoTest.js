@@ -105,12 +105,15 @@ var parseContentToJSON = function(stockCode, contents) {
 			stockInfo['address'] = $(this).next().text().trim();
 			break;		
 		case '公司简介：':
-			$(this).next().next().children().first().remove(); // remove <a>
-			stockInfo['introduction'] = $(this).next().next().text().trim();
+			if (this.next().next().children().first() != '') {
+				$(this).next().next().children().first().remove(); // remove <a>
+				stockInfo['introduction'] = $(this).next().next().text().trim();
+			} else {
+				stockInfo['introduction'] = $(this).next().text().trim();
+			}
 			break;					
 	  }
     });	
-
 	return stockInfo;
 }
 
