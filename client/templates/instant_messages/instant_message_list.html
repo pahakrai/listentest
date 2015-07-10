@@ -1,5 +1,4 @@
-<template name="home">
-  {{#if currentUser}}
+<template name="instantMessageList">
   {{#contentFor "headerButtonLeft"}}
     <button class="button button-clear pull-left" data-ion-menu-toggle="left">
       {{#if isAndroid}}
@@ -9,19 +8,17 @@
       {{/if}}
     </button>
   {{/contentFor}}
-  {{/if}}
-
   
   {{#contentFor "headerButtonRight"}}
 {{> atNavButton}}
-  {{/contentFor}}  
-  
-	  
-  {{#contentFor "headerTitle"}}
-    <h1 class="title">Home</h1>
   {{/contentFor}}
-   
-    {{#ionView}}	
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Messages</h1>
+  {{/contentFor}}
+  
+  
+    {{#ionView}}
 	
     {{#ionSubheaderBar}}	
 
@@ -29,9 +26,17 @@
 	
     {{#ionContent}}
 
-
- Welcome to Listen
-
+      {{#ionList}}	  
+        {{#each list}} 
+    {{#ionItem path="instantMessage" iconLeft=true iconRight=true}}
+<div class="row">
+<div class="col">{{_id}}</div>
+<div class="col item-note">{{formatTime lastUpdateDate}}</div>
+</div>
+    {{> ionIcon icon="ios-arrow-right" class="positive"}}
+    {{/ionItem}}
+        {{/each}}	  		
+      {{/ionList}}
     {{/ionContent}}
   {{/ionView}}
 </template>

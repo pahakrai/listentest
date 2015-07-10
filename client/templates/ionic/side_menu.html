@@ -1,0 +1,36 @@
+<template name="sideMenu">          
+		  <div class="bar bar-positive bar-dark">
+            <h1 class="title">Menu</h1>
+          </div>
+          <div class="content has-header">
+            <div class="list">
+              <div class="item item-icon-right" data-ion-menu-close>
+                Close Me {{> ionIcon icon="ios-arrow-right"}}
+              </div>			  
+            </div>
+          </div>
+		  
+          <div class="content has-header">
+            <div class="list">
+              <div class="item item-icon-right" data-ion-menu-close>
+                Close Me {{> ionIcon icon="ios-arrow-right"}}
+              </div>			  
+            </div>
+		  </div>
+          <div class="content has-header">
+            <div class="list">
+              <div class="item item-icon-right" data-ion-menu-close>
+                Close Me {{> ionIcon icon="ios-arrow-right"}}
+              </div>			  
+            </div>
+          </div>		  
+		  
+		       <div class="bar">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{_ "main.nav.lang"}} <b class="caret"></b></a>
+               <ul class="dropdown-menu" data-ion-menu-close>			
+                {{#each languages}}
+                  <li><a class="setlang" id="lang-{{this.lang}}" href="#">{{this.name}}</a></li>
+                {{/each}}
+              </ul>				
+              </div>		
+</template>		  

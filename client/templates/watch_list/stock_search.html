@@ -1,0 +1,21 @@
+﻿<template name="stockSearch"> 
+{{> inputAutocomplete settings=settings id="msg" class="form-control" placeholder="Search"}}
+<!--
+  <label class="item item-input">
+    <i class="icon ion-search placeholder-icon"></i>
+    <input type="text" placeholder="Search">
+  </label>
+  -->
+</template>
+
+<template name="searchResult">
+<div class="row">
+<div class="col">{{stockCode}}</div>
+<div class="col">{{name}}</div>
+<div class="col">¥{{current}}</div>
+</div>
+</template>
+
+<template name="searchNoResult">
+  NOT FOUND!!!
+</template>

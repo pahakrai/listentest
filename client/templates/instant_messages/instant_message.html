@@ -1,0 +1,42 @@
+<template name="instantMessage">
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button" text=false}}
+  {{/contentFor}}
+  
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Messages</h1>
+  {{/contentFor}}
+  
+  
+  {{#ionView}}
+    {{#ionContent}}
+		  
+  <!-- TODO remove border of each ionItem-->
+	{{#ionList}}	  
+        {{#each messages}} 
+        {{#ionItem}}
+	      {{#if isUser userId}}
+              <div class="chat-bubble right">
+		      {{content}}
+		      </div>			  
+		  {{else}}
+			  <div class="chat-bubble left">	
+		      {{content}}
+		      </div>			  
+	      {{/if}}		
+
+        {{/ionItem}}
+        {{/each}}	  	
+
+      {{/ionList}}
+
+  <label class="item item-input">
+    <i class="icon ion-search placeholder-icon"></i>
+	<form>
+    <input type="text" placeholder="Message" name="messageBox">
+	</form>
+  </label>
+  
+    {{/ionContent}}
+  {{/ionView}}
+</template>

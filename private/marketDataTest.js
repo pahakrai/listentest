@@ -88,7 +88,7 @@ var hq_str_sh601007="金陵饭店,28.80,29.53,26.58,28.80,26.58,0.00,26.58,39706
 				html += chunk;
 			});
 			res.on('end',Meteor.bindEnvironment(function(){
-//				html = iconv.decode(new Buffer(html, 'binary'), 'GBK');
+				html = iconv.decode(new Buffer(html, 'binary'), 'GBK');
 				
 				// set js variables according to the returned content
 				eval(html);
@@ -147,4 +147,4 @@ var updateHKStock = function(data, stockCode) {
 		{upsert: true});	
 }
 
-//SyncedCron.start();
+SyncedCron.start();

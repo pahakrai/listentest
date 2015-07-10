@@ -1,4 +1,4 @@
-﻿<template name="stockTest">
+<template name="watchList">
   {{#contentFor "headerButtonLeft"}}
     <button class="button button-clear pull-left" data-ion-menu-toggle="left">
       {{#if isAndroid}}
@@ -43,7 +43,7 @@
 
       {{#ionList}}	  
         {{#each list}} 
-    {{#ionItem path="messages" iconLeft=true iconRight=true}}
+    {{#ionItem path="stockInfo" iconLeft=true iconRight=true}}
 <div class="row">
 <div class="col">{{name}}</div>
 <div class="col" style="text-align:right">¥{{current}}</div>
@@ -56,8 +56,12 @@
 </div>
     {{> ionIcon icon="ios-arrow-right" class="positive"}}
     {{/ionItem}}
-        {{/each}}	  		
+        {{/each}}	  	
+
       {{/ionList}}
+	      {{#if nextPath}}
+              <a class="load-more" href="{{nextPath}}">Load more</a>
+	      {{/if}}
     {{/ionContent}}
   {{/ionView}}
 </template>

@@ -1,0 +1,51 @@
+<template name="appLayout">
+
+  {{#ionBody}}
+  
+    {{#ionSideMenuContainer side="left"}}  
+	{{#if currentUser}}	
+      {{#ionSideMenus}}
+
+        {{#ionSideMenu}}
+			{{> sideMenu}}		
+        {{/ionSideMenu}}
+      {{/ionSideMenus}}
+    {{/if}}	  
+  
+  
+
+      {{#ionSideMenuContent}}  
+    {{> ionNavBar class="bar-positive"}}
+
+    {{#ionNavView}}
+      {{> yield}}
+    {{/ionNavView}}
+
+	{{#if currentUser}}
+    {{#if isAndroid}}
+      {{#ionTabs style="android"}}
+        {{> ionTab title="News Feed" path="home" icon="android-home"}}
+        {{> ionTab title="Watch List" path="stockList" icon="android-bookmark"}}
+        {{> ionTab title="Portfolio" path="notifications" icon="android-list"}}
+        {{> ionTab title="Notifications" path="profile" icon="android-notifications"}}
+        {{> ionTab title="Messages" path="instantMessageList" icon="android-chat"}}
+        {{> ionTab title="Profile" path="profile" icon="android-person"}}		
+      {{/ionTabs}}
+    {{else}}
+      {{#ionTabs style="ios"}}
+        {{> ionTab title="News Feed" path="home" iconOff="ios-home-outline" iconOn="ios-home" class="tab-item-positive"}}
+        {{> ionTab title="Watch List" path="watchList" iconOff="ios-bookmarks-outline" iconOn="ios-bookmarks" class="tab-item-positive"}}
+        {{> ionTab title="Portfolio" path="recent" iconOff="ios-pie-outline" iconOn="ios-pie" class="tab-item-positive"}}
+        {{> ionTab title="Notifications" path="notifications" iconOff="ios-bell-outline" iconOn="ios-bell" class="tab-item-positive"}}
+        {{> ionTab title="Messages" path="instantMessageList" iconOff="ios-chatboxes-outline" iconOn="ios-chatboxes" class="tab-item-positive"}}
+        {{> ionTab title="Profile" path="profile" iconOff="ios-person-outline" iconOn="ios-person" class="tab-item-positive"}}
+      {{/ionTabs}}
+    {{/if}}
+    {{/if}}	
+
+
+        {{/ionSideMenuContent}}
+      {{/ionSideMenuContainer}}
+	  
+  {{/ionBody}}	  
+</template>

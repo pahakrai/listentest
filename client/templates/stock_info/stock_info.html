@@ -1,5 +1,19 @@
 <template name="stockInfo">
-    <p><h3>{{ name_cn }} ({{ stockCode }})</h3></p><br><br><br><br>
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button" text=false}}
+  {{/contentFor}}
+  
+  {{#contentFor "headerTitle"}}
+	    {{#with product}}	  
+    <h1 class="title">{{ name_cn }} ({{ stockCode }})</h1>
+	    {{/with}}	
+  {{/contentFor}}
+  
+  
+  {{#ionView}}
+    {{#ionContent}}
+	    {{#with product}}	
+	
 	<table class="table table-striped">
 	<tbody>
 	<tr>
@@ -103,6 +117,7 @@
 	</tbody>
 	
 	</table>
-	
-
+        {{/with}}	
+    {{/ionContent}}
+  {{/ionView}}
 </template>

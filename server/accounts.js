@@ -1,3 +1,13 @@
+/* user profile are editable by default even insecure has been removed
+  https://dweldon.silvrback.com/common-mistakes
+*/
+/*
+Meteor.users.deny({
+  update: function() {
+    return true;
+  }
+});
+*/
 
 Accounts.onCreateUser(function(options, user) {
   Logger.log('info', 'New user:'+user._id+' created');

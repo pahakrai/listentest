@@ -1,4 +1,5 @@
-﻿Template.nav.helpers({
+﻿
+Template.sideMenu.helpers({
     languages: function(){
         //return T9n.getLanguages();
         return [{lang: 'zh-CN', name: '简'},{lang: 'zh-HK', name: '繁'},{lang: 'en', name: 'ENG'}];		
@@ -8,8 +9,7 @@
     }
 });
 
-
-Template.nav.events({
+Template.sideMenu.events({
     'click a.setlang': function(event){
         event.preventDefault();
         var currTarg = event.currentTarget;
