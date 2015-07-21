@@ -1,20 +1,20 @@
 <template name="appLayout">
 
   {{#ionBody}}
-  
-    {{#ionSideMenuContainer side="left"}}  
-	{{#if currentUser}}	
+
+    {{#ionSideMenuContainer side="left"}}
+	{{#if currentUser}}
       {{#ionSideMenus}}
 
         {{#ionSideMenu}}
-			{{> sideMenu}}		
+			{{> sideMenu}}
         {{/ionSideMenu}}
       {{/ionSideMenus}}
-    {{/if}}	  
-  
-  
+    {{/if}}
 
-      {{#ionSideMenuContent}}  
+
+
+      {{#ionSideMenuContent}}
     {{> ionNavBar class="bar-positive"}}
 
     {{#ionNavView}}
@@ -29,7 +29,8 @@
         {{> ionTab title="Portfolio" path="notifications" icon="android-list"}}
         {{> ionTab title="Notifications" path="profile" icon="android-notifications"}}
         {{> ionTab title="Messages" path="instantMessageList" icon="android-chat"}}
-        {{> ionTab title="Profile" path="profile" icon="android-person"}}		
+        {{> ionTab title="Profile" path="profile" icon="android-person"}}
+        {{> ionTab title="Posts" path="posts" icon="android-person"}}
       {{/ionTabs}}
     {{else}}
       {{#ionTabs style="ios"}}
@@ -39,13 +40,14 @@
         {{> ionTab title="Notifications" path="notifications" iconOff="ios-bell-outline" iconOn="ios-bell" class="tab-item-positive"}}
         {{> ionTab title="Messages" path="instantMessageList" iconOff="ios-chatboxes-outline" iconOn="ios-chatboxes" class="tab-item-positive"}}
         {{> ionTab title="Profile" path="profile" iconOff="ios-person-outline" iconOn="ios-person" class="tab-item-positive"}}
+        {{> ionTab title="Posts" path="posts" iconOff="ios-person-outline" iconOn="ios-person" class="tab-item-positive"}}
       {{/ionTabs}}
     {{/if}}
-    {{/if}}	
+    {{/if}}
 
 
         {{/ionSideMenuContent}}
       {{/ionSideMenuContainer}}
-	  
-  {{/ionBody}}	  
+
+  {{/ionBody}}
 </template>

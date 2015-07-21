@@ -8,7 +8,7 @@
       {{/if}}
     </button>
   {{/contentFor}}
-  
+
   {{#contentFor "headerButtonRight"}}
 {{> atNavButton}}
   {{/contentFor}}
@@ -16,33 +16,33 @@
   {{#contentFor "headerTitle"}}
     <h1 class="title">China A Stocks</h1>
   {{/contentFor}}
-  
 
-  
-  
+
+
+
     {{#ionView}}
-	
 
-	
-	
-    {{#ionSubheaderBar}}	
+
+
+
+    {{#ionSubheaderBar}}
       <h2 class="title">
 <div class="row">
 <div class="col">Name</div>
 <div class="col" style="text-align:right">Price</div>
 <div class="col">Date</div>
 <div class="col">&nbsp;</div>
-</div>	  
+</div>
 	  </h2>
-    {{/ionSubheaderBar}}	
-	
+    {{/ionSubheaderBar}}
+
     {{#ionContent}}
 
-<!-- search -->	
+<!-- search -->
 {{> stockSearch }}
 
-      {{#ionList}}	  
-        {{#each list}} 
+      {{#ionList}}
+        {{#each list}}
     {{#ionItem path="stockInfo" iconLeft=true iconRight=true}}
 <div class="row">
 <div class="col">{{name}}</div>
@@ -56,7 +56,7 @@
 </div>
     {{> ionIcon icon="ios-arrow-right" class="positive"}}
     {{/ionItem}}
-        {{/each}}	  	
+        {{/each}}
 
       {{/ionList}}
 	      {{#if nextPath}}

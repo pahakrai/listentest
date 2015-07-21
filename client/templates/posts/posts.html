@@ -1,0 +1,57 @@
+<template name="posts">
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Posts</h1>
+  {{/contentFor}}
+    This is to prove its working
+  {{#if currentUser}}
+  <label class="item item-input" style = "{position: fixed; margin-top: 50px; width:100%; clear:both; float:top;}">
+    <form>
+      <input type="text" id="post">
+      <input type="submit" value="Add Post" placeholder="Type Post here">
+    </form>
+  </label>
+  {{/if}}
+  <div class = "view">
+    <div class = "scroll-content ionic-scroll">
+      <div class ="content overflow-scroll has-header has-tabs">
+        <div class="list">
+
+          {{#each postslist}}
+            {{#if editing}}
+              <div class="item">
+                <div class="chat-bubble left">
+                   <input type="text" value="{{post}}" id="newpost">
+                </div>
+              </div>
+              {{#ionItem path="postsid" _id="this._id" iconLeft=true iconRight=true}}load more {{/ionItem}}
+              {{#if selectedclass}}
+                <input type="button" value="Save Post" id="save">
+                <input type="button" value="Cancel Edit" id="cancel">
+              {{/if}}
+            {{else}}
+              <div class="item">
+                <div class="chat-bubble left">
+                   <li class="post">{{post}}</li>
+                </div>
+              </div>
+
+              {{#ionItem path="postsid" _id="this._id" iconLeft=true iconRight=true}}load more {{/ionItem}}
+              {{#if properuser}}
+                {{#if selectedclass}}
+                  <input type='button' value='Delete Post' id='remove'>
+                  <input type="button" value="Edit Post" id="edit">
+                {{/if}}
+              {{/if}}
+            {{/if}}
+          {{/each}}
+        </div>
+
+      <!-- {{#if nextPath}} -->
+              <a class="load-more" href="{{nextPath}}">Load more</a>
+	      <!-- {{/if}} -->
+
+      </div>
+    </div>
+  </div>
+
+</template>

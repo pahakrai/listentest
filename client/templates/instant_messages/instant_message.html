@@ -2,31 +2,31 @@
   {{#contentFor "headerButtonLeft"}}
     {{>ionNavBackButton class="button" text=false}}
   {{/contentFor}}
-  
+
   {{#contentFor "headerTitle"}}
     <h1 class="title">Messages</h1>
   {{/contentFor}}
-  
-  
+
+
   {{#ionView}}
     {{#ionContent}}
-		  
+
   <!-- TODO remove border of each ionItem-->
-	{{#ionList}}	  
-        {{#each messages}} 
+	{{#ionList}}
+        {{#each messages}}
         {{#ionItem}}
 	      {{#if isUser userId}}
               <div class="chat-bubble right">
 		      {{content}}
-		      </div>			  
+		      </div>
 		  {{else}}
-			  <div class="chat-bubble left">	
+			  <div class="chat-bubble left">
 		      {{content}}
-		      </div>			  
-	      {{/if}}		
+		      </div>
+	      {{/if}}
 
         {{/ionItem}}
-        {{/each}}	  	
+        {{/each}}
 
       {{/ionList}}
 
@@ -36,7 +36,7 @@
     <input type="text" placeholder="Message" name="messageBox">
 	</form>
   </label>
-  
+
     {{/ionContent}}
   {{/ionView}}
 </template>

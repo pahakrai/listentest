@@ -9,17 +9,17 @@ Template.profile.events({
       FS.Utility.eachFile(event, function(file) {
 		//check isImage
 		//Done in collection, see member.js
-		
-		//image manipulation 
+
+		//image manipulation
 		//TODO
-	  
-        var userId = Meteor.userId();
+
+    var userId = Meteor.userId();
 		var fsFile = new FS.File(file);
-		fsFile.owner = userId;	  
+		fsFile.owner = userId;
 
 		//remove previous profile image, if any
 		Meteor.call('removeProfileImage');
-		
+
 		// insert to CollectionFS
         MemberProfilePictureCollection.insert(fsFile, function (err, fileObj) {
           if (err){

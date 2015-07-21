@@ -1,38 +1,39 @@
 Meteor.publish('settings', function() {
   var currentUserId = this.userId;
-  
+
   Logger.log('info','publish setting userId='+currentUserId);
-  
+
   return MemberSettingCollection.find({userId: currentUserId});
 });
 
-Meteor.publish("profilePicture", function(){ 
+Meteor.publish("profilePicture", function(){
   var currentUserId = this.userId;
 
   Logger.log('info','publish profilePicture userId='+currentUserId);
-  
+
   return MemberProfilePictureCollection.find({
       $query: {'owner': currentUserId},
       $orderby: {uploadedAt: -1}
-    });  
+    });
 });
 
 // remove image of owner=userId
 Meteor.methods({
     'removeProfileImage': function(){
-		var currentUserId = this.userId;	
+		var currentUserId = this.userId;
         var cursor = MemberProfilePictureCollection.find({$query: {'owner': currentUserId}});
 		cursor.forEach(function (profileImage) {
 			MemberProfilePictureCollection.remove(profileImage._id);
 		})
-    }
+  }
+
 });
 
 Meteor.publish('message', function() {
   var currentUserId = this.userId;
-  
+
   Logger.log('info','publish message userId='+currentUserId);
-  
+
   return MessageCollection.find({userId: currentUserId});
 });
 
@@ -50,7 +51,7 @@ Meteor.publish('chinaAStock', function() {
 
 */
 
-// instant message list 
+// instant message list
 Meteor.publish('instantMessageList', function() {
   var currentUserId = this.userId;
   return InstantMessageCollection.find({userIds: currentUserId});
@@ -58,12 +59,12 @@ Meteor.publish('instantMessageList', function() {
 
 Meteor.publish('instantMessage', function(id) {
   check(id, String);
-  
+
   var currentUserId = this.userId;
   var cursor = InstantMessageCollection.find({_id: id});
-  
+
   // TODO check the message contains userId
-  
+
   return cursor;
 });
 
@@ -76,9 +77,9 @@ Meteor.publish('chinaAStock', function(stockList) {
 Meteor.publish('watchList', function() {
 	var user =  Meteor.users.findOne({_id: this.userId});
 	if (user != null) {
-		//var name  = user.profile.watchList;		
+		//var name  = user.profile.watchList;
 		//var selector = {stockCode: {$in: user.profile.watchList}};
-  
+
 		//Logger.log('info','watchList='+name);
 
 		var wl = [];
@@ -98,11 +99,13 @@ Meteor.publish('singleStockInfo', function(stockCode) {
 });
 
 // for autocomplete
-Meteor.publish("autocompleteStocks", function(selector, options) {  
+Meteor.publish("autocompleteStocks", function(selector, options) {
 //Logger.log('info','selector='+JSON.stringify(selector)+' options='+JSON.stringify(options));
   Autocomplete.publishCursor(ChinaAStockCollection.find(selector, options), this);
-  this.ready();  
+  this.ready();
 });
+
+
 
 /* example
 Meteor.publish('groupUsers', function(groupId) {
@@ -118,10 +121,8 @@ Meteor.publish('groupUsers', function(groupId) {
 
 /* example not to over publish http://joshowens.me/meteor-security-101/
 
-Meteor.publish('gameAttendees', function(ids) {  
+Meteor.publish('gameAttendees', function(ids) {
   return Meteor.users.find({_id: {$in: ids}}, {fields: {'profile.pictureUrl': 1, username: 1}});
 });
 
 */
-
-

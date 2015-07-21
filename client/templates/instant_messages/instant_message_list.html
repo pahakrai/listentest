@@ -8,7 +8,7 @@
       {{/if}}
     </button>
   {{/contentFor}}
-  
+
   {{#contentFor "headerButtonRight"}}
 {{> atNavButton}}
   {{/contentFor}}
@@ -16,18 +16,18 @@
   {{#contentFor "headerTitle"}}
     <h1 class="title">Messages</h1>
   {{/contentFor}}
-  
-  
-    {{#ionView}}
-	
-    {{#ionSubheaderBar}}	
 
-    {{/ionSubheaderBar}}	
-	
+
+    {{#ionView}}
+
+    {{#ionSubheaderBar}}
+
+    {{/ionSubheaderBar}}
+
     {{#ionContent}}
 
-      {{#ionList}}	  
-        {{#each list}} 
+      {{#ionList}}
+        {{#each list}}
     {{#ionItem path="instantMessage" iconLeft=true iconRight=true}}
 <div class="row">
 <div class="col">{{_id}}</div>
@@ -35,7 +35,7 @@
 </div>
     {{> ionIcon icon="ios-arrow-right" class="positive"}}
     {{/ionItem}}
-        {{/each}}	  		
+        {{/each}}
       {{/ionList}}
     {{/ionContent}}
   {{/ionView}}

@@ -1,0 +1,45 @@
+<body style="background-color: grey;">
+
+  {{> postpage}}
+
+</body>
+
+<template name="postpage">
+  this is single post page
+
+  <div style="background-color: grey;">
+    <li>temp data one</li>
+    <li>temp data two</li>
+    <li>temp data three</li>
+  </div>
+  <div style="background-color: grey;">
+
+    {{singlepost.post}}
+    <a href="{{pathFor 'postPage'}}">{{commentsCount}} comments</a>
+    {{#if ownPost}}<a href="{{pathFor 'postEdit'}}">Edit</a>{{/if}}
+  </div>
+  <!-- <a href="{{pathFor 'postPage'}}" class="discuss btn btn-default">Discuss</a> -->
+  {{#if currentUser}}
+    {{> postComment}}
+  {{else}}
+    <p>Please log in to leave a comment.</p>
+  {{/if}}
+  <div style="background-color: grey;">
+  {{#each comments}}
+    {{author}} :
+    {{body}}
+  {{/each}}
+  </div>
+</template>
+<template name="postComment">
+  <form class="comment-form form">
+    <div class="form-group" >
+        <div class="controls">
+            <label for="body">Comment on this post</label>
+            <textarea name="body" id="comment" class="form-control" rows="3"></textarea>
+            <!-- <span class="help-block">{{errorMessage 'body'}}</span> -->
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Comment</button>
+  </form>
+</template>
