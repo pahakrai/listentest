@@ -12,16 +12,27 @@
 
 */
 
+/*Template.postmain.onCreated = function() {
+  this.autorun(function () {
+    this.subscription = Meteor.subscribe('postcollections', Meteor.userId());
+  }.bind(this));
+} */
+
 Template.postmain.rendered = function() {
   this.autorun(function() {
-    /*
-    var userId = Meteruser.userId();
-    if (Router.parmater exits) {
-      userId = Router.parser;
-    }
-    */
 
-    Meteor.subscribe("postcollections", Meteor.userId());
+    if(Router.current().params.userid !== undefined){
+      var userid = Router.current().params.userid;
+    }
+    else{
+      var userid = Meteor.userId();
+      //session.set('currentuserid',userid);
+    }
+    Session.set('currentuserid',userid);
+
+
+
+    Meteor.subscribe("postcollections", userid);
   })
 }
 
@@ -42,16 +53,17 @@ Template.postmain.events({
 });
 
 Template.postcollections.events({
-  'keyup #commenttext': function(event,template){
+  'keyup .commenttext': function(event,template){
     event.preventDefault();
     if(event.which === 13){
-      var textcontent = template.find('#commenttext').value;
+      console.log(this._id);
+      var textcontent = template.find('.commenttext').value;
       Meteor.call('insertPost',{content: textcontent, parentId: this._id});
-      $('#commenttext').val("").select().focus();
+      $('.commenttext').val("").select().focus();
     }
   },
   'click #loadmore': function() {
-    Session.set('parentid',this._id);
+    //Session.set('parentid',this._id);
     incrementLimit();
   }
 })
@@ -66,21 +78,22 @@ Template.postcollections.postcom = function() {
 }
 
 Template.postcollections.postcomsingle = function() {
-  var parentid = Session.get('parentid');
-  return PostCollection.find({parent: this._id}, {limit: Session.get('limit')});
+  //var parentid = Session.get('parentid');
+  //return PostCollection.find({parent: this._id}, {limit: Session.get('limit')});
   //Session.set('parentid',null);
 }
 
-Template.postcollections.helpers({
+Template.postmain.helpers({
   authorized: function() {
-    return this.userId === Meteor.userId();
+    //var currentuserid = Session.get('currentuserid');
+    return Session.get('currentuserid') === Meteor.userId();
   },
-  single: function(){
-    if(Session.get('parentid') === undefined)
-      return true
-    else
-      return false
-  }
+  //single: function(){
+    //if(Session.get('parentid') === undefined)
+      //return true
+    //else
+      //return false
+  //}
   //postid : function() {
   //  return Session.equals('parentid',this._id);
 //  }

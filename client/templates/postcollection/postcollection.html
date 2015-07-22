@@ -4,16 +4,20 @@
   {{#contentFor "headerTitle"}}
     <h1 class="title">Posts</h1>
   {{/contentFor}}
-  {{#if currentUser}}
 
- postform : <label class="item item-input" style = "{position: fixed; margin-top: 50px; width:100%; clear:both; float:top;}">
-        <input type="textarea" id="posttext" style="height: 100px;" placeholder="put your posts here">
-    </label>
+  {{#if currentUser}}
+    {{#if authorized}}
+ postform : <label class="item item-input" style = "{position: inline-block; margin-top: 5px; width:100%; clear:both; float:top;}">
+        <input type="textarea" id="posttext" style="height: 35px;" placeholder="put your posts here">
+   </label>
+   <!-- <a href=Router.go('postmain', {name: 'foo'}, {query: 'id=bar'}) >friend link</a> -->
+   <a href="/postmain/YhYC8xcSzgn2e5udX" >friend link</a>
+    {{/if}}
   {{/if}}
 
           <div style="background-color: white">
             {{#each postcoll}}
-              {{>postcollections}}
+              {{> postcollections}}
             {{/each}}
           </div>
 
@@ -21,25 +25,25 @@
 
 <template name="postcollections">
   post : <div style="background-color: grey;"> {{content}} : {{date}} </div>
-    {{#if single}}
+    <!-- {{#if single}}
       {{#each postcomsingle}}
         {{> postcomments}}
       {{/each}}
-    {{else}}
+    {{else}} -->
     {{#each postcom}}
       {{> postcomments}}
     {{/each}}
-    {{/if}}
+  <!--  {{/if}} -->
 
 
   <input type="button" value="Load More" id="loadmore">
-  {{#if currentUser}}
- comment form:<label class="item item-input" style = "{position: fixed; margin-top: 50px; width:100%; clear:both; float:top;}">
-      <input type="textarea" id="commenttext" style="height: 50px;" placeholder ="put your comment here">
-  </label> 
-  {{else}}
+  <!-- {{#if currentUser}} -->
+ comment form:<!-- <label class="item item-input" style = "{position: fixed; margin-top: 50px; width:100%; clear:both; float:top;}"> -->
+      <input type="textarea" class="commenttext" style="height: 30px;" placeholder ="put your comment here">
+      <!--  </label> -->
+  <!-- {{else}}
   please login to put comment
-  {{/if}}
+  {{/if}} -->
 </template>
 
 <template name="postcomments">

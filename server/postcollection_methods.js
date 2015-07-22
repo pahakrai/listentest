@@ -10,7 +10,9 @@ Meteor.methods({
       userId: Meteor.userId(),
       parent: options.parentId
     };
-    PostCollection.insert(post);
+    var childrenid = PostCollection.insert(post);
+    console.log(childrenid);
+    PostCollection.update({ _id: options.parentId},{ $push: { children: childrenid }});
   },
   'deletePost': function(selectedpost) {
     PostCollection.remove(selectedpost);
