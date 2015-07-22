@@ -1,0 +1,47 @@
+
+
+<template name ="postmain">
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Posts</h1>
+  {{/contentFor}}
+  {{#if currentUser}}
+
+ postform : <label class="item item-input" style = "{position: fixed; margin-top: 50px; width:100%; clear:both; float:top;}">
+        <input type="textarea" id="posttext" style="height: 100px;" placeholder="put your posts here">
+    </label>
+  {{/if}}
+
+          <div style="background-color: white">
+            {{#each postcoll}}
+              {{>postcollections}}
+            {{/each}}
+          </div>
+
+</template>
+
+<template name="postcollections">
+  post : <div style="background-color: grey;"> {{content}} : {{date}} </div>
+    {{#if single}}
+      {{#each postcomsingle}}
+        {{> postcomments}}
+      {{/each}}
+    {{else}}
+    {{#each postcom}}
+      {{> postcomments}}
+    {{/each}}
+    {{/if}}
+
+
+  <input type="button" value="Load More" id="loadmore">
+  {{#if currentUser}}
+ comment form:<label class="item item-input" style = "{position: fixed; margin-top: 50px; width:100%; clear:both; float:top;}">
+      <input type="textarea" id="commenttext" style="height: 50px;" placeholder ="put your comment here">
+  </label> 
+  {{else}}
+  please login to put comment
+  {{/if}}
+</template>
+
+<template name="postcomments">
+  comment :<div style="background-color: grey;"> {{content}} </div>
+</template>
