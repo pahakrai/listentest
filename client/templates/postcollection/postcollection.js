@@ -30,9 +30,7 @@ Template.postmain.rendered = function() {
     }
     Session.set('currentuserid',userid);
 
-
-
-    Meteor.subscribe("postcollections", userid);
+    this.subscription = Meteor.subscribe("postcollections", userid);
   })
 }
 
@@ -50,6 +48,16 @@ Template.postmain.events({
       $('#posttext').val("").select().focus();
     }
   },
+});
+
+Template.postcollections.onCreated(function() {
+  this.autorun(function () {
+    console.log('--- calling subscribe to postcomments '+ Template.currentData()._id);
+    this.subscription = Meteor.subscribe("comments", Template.currentData()._id);
+  }.bind(this));
+
+  // set to session for rendered function use
+  Session.set('stockCodes', Template.currentData().stockCodes);
 });
 
 Template.postcollections.events({
@@ -73,16 +81,17 @@ Template.postcollections.postcom = function() {
   //  if(parentid === null)
     //  return PostCollection.find({parent: this._id}, {limit: Session.get('limit')});
   //  else
+//  return PostCollection.find({parent: this._id}, {limit: Session.get('limit')});
+console.log('id='+this._id+'postcollection length='+PostCollection.find({parent: this._id}).length);
   return PostCollection.find({parent: this._id}, {limit: Session.get('limit')});
   //Session.set('parentid',null);
 }
 
-Template.postcollections.postcomsingle = function() {
+//Template.postcollections.postcomsingle = function() {
   //var parentid = Session.get('parentid');
   //return PostCollection.find({parent: this._id}, {limit: Session.get('limit')});
   //Session.set('parentid',null);
-}
-
+//}
 Template.postmain.helpers({
   authorized: function() {
     //var currentuserid = Session.get('currentuserid');
