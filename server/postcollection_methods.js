@@ -1,11 +1,23 @@
 Meteor.methods({
   'insertPost': function(options) {
-    console.log(options.content);
+    /*-- console.log(options.content);
     var currentUserId = Meteor.userId();
-    //var author = Meteor.user().emails[0].address;
-    //if(options.parentId !== null){
-    //  var objectid = new Mongo.ObjectID(options.parentId);
-  //  }
+    var author = Meteor.user().emails[0].address;
+    if(options.parentId !== null){
+      var objectid = new Mongo.ObjectID(options.parentId);
+      }
+    structure
+    {
+      _id: 123,
+      userId: 123,  // receiver user id
+      fromUserId: 123, // the sender
+      type: // action type:  1 - reply you a comment , 2 - like your post
+      refId: // reference to
+      isRead:  // true = notification is read, false
+      date: // notofication date
+    }
+
+    --*/
     var post = {
       content: options.content,
       date: new Date(),
@@ -13,26 +25,20 @@ Meteor.methods({
     //author: author,
       parent: options.parentId
     };
+    console.log("user id: " + Meteor.userId());
+    var userCurrentId = Meteor.userId();
     var children_id = PostCollection.insert(post);
+
+    createPostCommentNotification(post, children_id);
     //console.log(childrenid);
     //insert as children if parent is null and create a notification for post readers except the post creater
     if(options.parentId !== null)
     {
-      createPostCommentNotification(post);
-      PostCollection.update({ _id: options.parentId},{ $push: { children: children_id }});
+      PostCollection.update({_id: options.parentId},{ $push: { children: children_id }});
     }
-
-    // create the comment, save the id
-    //post._id = PostCollection.insert(post);
-    // now create a notification, informing the user that there's been a comment
-  //  createPostCommentNotification(post);
-  //  return post._id;
-
-    /*
-    find out userId's followers from the FollowCollection
-    for each follower, create a notification
-    */
-
+    //var postowner = PostCollection.findOne({_id: options.parentId });
+    //console.log("children_id.parent= " +  children_id.parent);
+    //return children_id;
   },
   'deletePost': function(selectedpost) {
     PostCollection.remove(selectedpost);
@@ -54,38 +60,6 @@ Meteor.methods({
   }--*/
 });
 
-/*Notifications.allow({
-  update: function(userId, doc, fieldNames) {
-    return ownsDocument(userId, doc) &&
-      fieldNames.length === 1 && fieldNames[0] === 'read';
-  }
-});
-
-createPostCommentNotification = function(comment) {
-  var post = Posts.findOne(comment.postId);
-  if (comment.userId !== post.userId) {
-    NotificationCollection.insert({
-      userId: post.userId,
-      postId: post._id,
-      commentId: comment._id,
-      commenterName: comment.author,
-      isRead: false
-    });
-  }
-};*/
-
-/* structure
-{
-	_id: 123,
-	userId: 123,  // receiver user id
-	fromUserId: 123, // the sender
-	type: // action type:  1 - reply you a comment , 2 - like your post
-	refId: // reference to
-  isRead:  // true = notification is read, false
-	date: // notofication date
-}
-
-*/
 
 
 /* Template.notifications.helpers({

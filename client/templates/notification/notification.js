@@ -1,9 +1,9 @@
  Template.notifications.helpers({
   notifications: function() {
-    return Notifications.find({userId: Meteor.userId(), read: false});
+    return NotificationCollection.find({toUserId: Meteor.userId(), isRead: false});
   },
   notificationCount: function(){
-      return Notifications.find({userId: Meteor.userId(), read: false}).count();
+      return NotificationCollection.find({toUserId: Meteor.userId(), isRead: false}).count();
   }
 });
 
@@ -14,7 +14,7 @@ Template.notificationItem.helpers({
 });
 
 Template.notificationItem.events({
-  'click a': function() {
-    Notifications.update(this._id, {$set: {read: true}});
+  'click a.link': function() {
+    Meteor.call('updateNotification',this._id);
   }
-}); 
+});

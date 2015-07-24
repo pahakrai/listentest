@@ -1,13 +1,23 @@
-{{> notifications}}
+
 <template name="notifications">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+  <div style="background-color: grey;">
+  <h3>test if this is working or not</h3>
+  <li>test data</li>
+  <li>test data</li>
+  <li>test data</li>
+  <li>test data</li>
+  <li>test data</li>
+  <li>test data</li>
+  <li>test data</li>
+  <li>test data</li>
+<!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown"> -->
     Notifications
     {{#if notificationCount}}
       <span class="badge badge-inverse">{{notificationCount}}</span>
     {{/if}}
     <b class="caret"></b>
-  </a>
-  <ul class="notification dropdown-menu">
+<!--   </a> -->
+
     {{#if notificationCount}}
       {{#each notifications}}
         {{> notificationItem}}
@@ -15,13 +25,14 @@
     {{else}}
       <li><span>No Notifications</span></li>
     {{/if}}
-  </ul>
+  </div>
+
 </template>
 
 <template name="notificationItem">
   <li>
-    <a href="{{notificationPostPath}}">
-      <strong>{{commenterName}}</strong> commented on your post
+    <a href="/posts" class="link">
+      <strong>{{fromUserId}}</strong> commented on your post
     </a>
   </li>
 </template>
